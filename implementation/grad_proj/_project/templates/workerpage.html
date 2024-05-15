@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href=" {% static "css/main.css" %} ">
+    <title>worker page</title>
+</head>
+<body>
+    <div class="window" id="popup">
+        <div class="window_content">
+            <i id="closePopup" class="fa-solid fa-xmark close"></i>
+            <h1>Just a sec.....</h1>
+        </div>    
+    </div>
+    <div class="menuBar">
+        <div class="head">
+            <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
+            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <h2>Smart Helmet</h2>
+        </div>
+        <div class="bottomSide">
+            <div>
+                <span>Log out</span>
+                <a href="{% url "login" %}"><i class="fa-solid fa-arrow-right-from-bracket"></i><a/>
+                </div>
+        </div>
+    </div>
+
+    <div class="mainContainer">
+        <div class="container2" id="container2">
+            <div class="up">
+            
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <h2>WORKER PAGE FOR "{{worker.name}}"</h2>
+                <div class="inputs">
+                    <input name="name" type="text" placeholder="{{worker.name}}">
+                    <input name="phone" type="text" placeholder="{{worker.helmetID}}">
+                    <input name="email" type="text"placeholder="{{worker.site}}">
+
+                </div>     
+                    <form method="post" >
+                    {% csrf_token %}
+                    <input type="hidden" name="worker" value="{{ worker.name }}">
+                    <button type="submit" style="
+                font-size:25px;
+                font-weight: 800;
+                color: #FEFEFC;
+                background: red;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                margin: 20px 0;
+                padding: 5px;
+                " name="unassign2" class="">UnAssign</button>
+            </form>
+            </div>
+
+            {% if helmet %}
+
+            <div class="down">
+
+                {% for helmet_doc in helmet %}
+                    <h3>Helmet Data</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Helmet id</th>
+                            <th>Tempreture</th>
+                            <th>Humidity</th>
+                            <th>CO</th>
+                            <th>Fall</th>
+                            <th>Objects</th>
+                            <th>LPG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{helmet_doc.to_dict.helmetID}}</td>
+                            <td>{{helmet_doc.to_dict.temp}}</td>
+                            <td>{{helmet_doc.to_dict.humidity}}</td>
+                            <td>{{helmet_doc.to_dict.co}}</td>
+                            <td>{{helmet_doc.to_dict.fall}}</td>
+                            <td>{{helmet_doc.to_dict.objects}}</td>
+                            <td>{{helmet_doc.to_dict.lpg}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {% endfor %}
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+            {% else %}
+                <h1>No helmet assigned</h1>
+            {% endif %}
+        
+
+
+
+        </div>
+        
+    </div>
+    <script src=" {% static "js/manager.js" %} "></script>
+</body>
+</html>

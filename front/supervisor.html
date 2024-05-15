@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/main.css">
+    <title>manager page</title>
+</head>
+<body>
+    <div class="window" id="popup">
+        <div class="window_content">
+            <i id="closePopup" class="fa-solid fa-xmark close"></i>
+            hello
+        </div>    
+    </div>
+    <div class="menuBar">
+        <div class="head">
+            <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
+            <img src="images/smart safety helmet3.png" alt="logo">
+            <h2>Smart Helmet</h2>
+        </div>
+        <ul>
+            <li>
+                <a href="#container1" id="sideBTN" class="firstBTN">
+                    <i class="fas fa-home"></i>
+                    <span>Home Page</span>
+                </a>
+            </li>
+            <li>
+                <a href="#container2" id="sideBTN">
+                    <i class="fa-solid fa-users"></i>
+                    <span>WORKERS</span>
+                </a>
+            </li>
+            <li>
+                <a href="#container3" id="sideBTN">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Organization</span>
+                </a>
+            </li>
+            <li>
+                <a href="#container4" id="sideBTN">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>Support</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bottomSide">
+            <div>
+                <img src="images/smart safety helmet3.png" alt="" />
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mainContainer">
+        <div class="container1" id="container1">
+            <div class="card">
+                <h2>Helmet Statistics</h2>
+                <div class="cardBody">
+                    <div class="left">
+                        
+                    </div>
+                    <div class="right">
+                        <p>Number of Helmets: <span>500</span></p>
+                        <p>Number of Workers: <span>500</span></p>
+                        <p>Number of Unassigned: <span>200</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <div class="container2" id="container2">
+            <h2>ASSIGN WORKERS </h2>
+            <div class="up">
+                <div class="inputs">
+                    <input type="text" placeholder="First Name">
+                    <input type="text" placeholder="Helmet ID">
+                </div>
+                <button class="addsupervisor">ASSIGN</button>
+            </div>
+            <div class="down">
+                <div class="sort">
+                    <input type="text" placeholder="search" id="searchbar2">
+                    <div class="filter">
+                        <h3>search by : </h3>
+                        <select id="filterSelect"> 
+                            <option value="name">name</option>
+                            <option value="phone">address</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table2body">
+                        <tr>
+                            <td>1</td>
+                            <td>mohamed</td>
+                            <td>01001111111</td>
+                            <td>mahala</td>
+                            <td id="siteStatus">CONNECTED</td>
+                            <td><button id="update">update</button></td>
+                            <td><button id="delete">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Ahmed</td>
+                            <td>01001111111</td>
+                            <td>damanhour</td>
+                            <td id="siteStatus">CONNECTED</td>
+                            <td><button id="update">update</button></td>
+                            <td><button id="delete">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>mostafa</td>
+                            <td>01001111111</td>
+                            <td>alex</td>
+                            <td id="siteStatus">CONNECTED</td>
+                            <td><button id="update">update</button></td>
+                            <td><button id="delete">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>asacdaxa</td>
+                            <td>01001111111</td>
+                            <td>fayoum</td>
+                            <td id="siteStatus">CONNECTED</td>                   
+                            <td><button id="update">update</button></td>
+                            <td><button id="delete">delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container6" id="container6">
+            <h2>ORGANIZATION</h2>
+            <div>
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore unde debitis pariatur est! Reiciendis molestias enim quas neque. Officiis veniam corrupti cupiditate necessitatibus porro sit possimus, similique et sed quo fugiat quos ipsa expedita maiores veritatis facilis commodi eos soluta adipisci rerum dolor maxime nesciunt? Itaque deleniti tempora impedit blanditiis, neque ad aspernatur adipisci assumenda doloremque tenetur nostrum eius dolorem reiciendis repudiandae dolor explicabo minima quia doloribus voluptas, sunt laudantium. Accusantium voluptate illo ipsum deserunt, ipsa iste magnam velit nulla voluptatem autem aliquam sint, officiis saepe culpa nam consequatur quo sed, dolore ducimus praesentium esse doloribus! Accusamus aspernatur vitae enim neque eum, assumenda quasi molestiae perferendis nisi quidem deleniti fugiat! Expedita aliquam optio quae veritatis quidem ipsum quod dicta esse vero repudiandae rem voluptatum sed nulla iure corrupti, omnis beatae enim provident blanditiis sint nihil ullam iste. Aliquid, vel repudiandae? Magnam, quos quasi explicabo voluptate repellendus eaque accusamus asperiores eveniet libero quaerat, excepturi quibusdam eius non voluptates fugit commodi numquam veritatis tenetur omnis nobis cupiditate nulla consequatur mollitia. Rerum quidem nihil vitae quos odio? Corrupti magni ipsam tenetur nisi illo! Quidem ullam voluptates exercitationem, iusto minus quae nihil dignissimos sint iste explicabo ipsa aut, impedit deserunt fugit aspernatur illo reiciendis.</p>
+            </div>
+            <div>
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore unde debitis pariatur est! Reiciendis molestias enim quas neque. Officiis veniam corrupti cupiditate necessitatibus porro sit possimus, similique et sed quo fugiat quos ipsa expedita maiores veritatis facilis commodi eos soluta adipisci rerum dolor maxime nesciunt? Itaque deleniti tempora impedit blanditiis, neque ad aspernatur adipisci assumenda doloremque tenetur nostrum eius dolorem reiciendis repudiandae dolor explicabo minima quia doloribus voluptas, sunt laudantium. Accusantium voluptate illo ipsum deserunt, ipsa iste magnam velit nulla voluptatem autem aliquam sint, officiis saepe culpa nam consequatur quo sed, dolore ducimus praesentium esse doloribus! Accusamus aspernatur vitae enim neque eum, assumenda quasi molestiae perferendis nisi quidem deleniti fugiat! Expedita aliquam optio quae veritatis quidem ipsum quod dicta esse vero repudiandae rem voluptatum sed nulla iure corrupti, omnis beatae enim provident blanditiis sint nihil ullam iste. Aliquid, vel repudiandae? Magnam, quos quasi explicabo voluptate repellendus eaque accusamus asperiores eveniet libero quaerat, excepturi quibusdam eius non voluptates fugit commodi numquam veritatis tenetur omnis nobis cupiditate nulla consequatur mollitia. Rerum quidem nihil vitae quos odio? Corrupti magni ipsam tenetur nisi illo! Quidem ullam voluptates exercitationem, iusto minus quae nihil dignissimos sint iste explicabo ipsa aut, impedit deserunt fugit aspernatur illo reiciendis.</p>
+            </div>
+        </div>
+        <div class="container4" id="container4">
+                <h2>SUPPORT</h2>
+                <div class="orc" id="orc">
+                    <p>Send A Report</p>
+                    <input type="text" placeholder="your name">
+                    <div class="orc2">
+                    <input type="text" placeholder="your massage"></div>
+                    <div class="orc3">
+                    <input type="button" value="Send"></div>
+                    <button><i class="fa-solid fa-phone"></i> Call Emergency</button>
+                    
+                </div>
+                
+        </div>
+    </div>
+    <script src="js/manager.js"></script>
+</body>
+</html>

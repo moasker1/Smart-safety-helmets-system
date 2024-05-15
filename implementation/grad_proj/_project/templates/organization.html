@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href=" {% static "css/main.css" %} ">
+    <title>organization page</title>
+</head>
+<body>
+    <div class="window" id="popup">
+        <div class="window_content">
+            <i id="closePopup" class="fa-solid fa-xmark close"></i>
+            <h1>Just a sec.....</h1>
+        </div>    
+    </div>
+    <div class="menuBar">
+        <div class="head">
+            <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
+            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <h2>Smart Helmet</h2>
+        </div>
+        <ul>
+            <li>
+                <a href="{% url "manager" %}"  >
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "supervisors" %}" >
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Supervisors</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "sites" %}" >
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Sites</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "helmets" %}" >
+                    <i class="fa-solid fa-helmet-safety"></i>
+                    <span>Helmets</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "workers" %}" >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Workers</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "organization" %}" id="sideBTN">
+                    <i class="fa-solid fa-building"></i>
+                    <span>About Us</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "reports" %}" style="cursor: pointer;" >
+                    <i class="fa-solid fa-bug"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bottomSide">
+            <div>
+                <span>Log out</span>
+                <a href="{% url "login" %}"><i class="fa-solid fa-arrow-right-from-bracket"></i><a/>
+                </div>
+        </div>
+    </div>
+    <div class="mainContainer">
+
+
+
+        <div class="container6" id="container6">
+            <h2 style="text-align:center;">About Us</h2>
+            <div>
+                <table >
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <p><h3>Project overview:</h3><br>
+                                This project summary is to manufacture a smart helmet for workers on hazardous construction sites with several features, including tracking the worker's location, falling detection, measuring temperature and humidity in the air, object detection, and checking gases that can cause ignition in the atmosphere. The project must be implemented to maintain the safety of workers and reduce the incidence of accidents and injuries. Providing the advantage of monitoring workers remotely for supervisors or site mentors. The project does not require external parties or official communications.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <p><h3>Objectives:</h3></p>
+                                <li>To reduce the risk of injury while working on work sites.</li>
+                                <li>To reduce effort and time.</li>
+                                <li>Protect workers and avoid the risk of injury while performing their jobs.</li>
+                                <li>Data Analytics and Reporting, Implement data analytics capabilities to track safety metrics.</li>
+                                <li>Environment Monitoring, Include sensors to monitor air quality for general safety.</li>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"style="text-align:center;">
+                            <p><h3>Scope:</h3><br>
+                                The project falls within the realm of wearable technology and IoT devices in the construction industry. It combines elements of sensor technology, real-time data analysis, and communication systems to enhance worker safety and efficiency on construction sites.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"style="text-align:center;">
+                            <p><h3>Contributors:</h3></p>
+                            <table border="1" style="text-align:center;">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description of Work</th>
+                                    <th>Specialization</th>
+                                </tr>
+                                <tr>
+                                    <td>Mohamed Ahmed Abd-elghany</td>
+                                    <td>Android app design and development</td>
+                                    <td>Information system (IS)</td>
+                                </tr>
+                                <tr>
+                                    <td>Mohamed Ahmed Asker</td>
+                                    <td>Website design and development</td>
+                                    <td>Information system (IS)</td>
+                                </tr>
+                                <tr>
+                                    <td>Rahma Mohamed Ebrahim Salem</td>
+                                    <td>Programming sensor</td>
+                                    <td>Information technology (IT)</td>
+                                </tr>
+                                <tr>
+                                    <td>Habiba Essam Mohamed Kamal Abd ElDayem</td>
+                                    <td>Programming sensor</td>
+                                    <td>Information technology (IT)</td>
+                                </tr>
+                                <tr>
+                                    <td>Alaa Mohamed Abdelsatar Elattar</td>
+                                    <td>Programming sensor</td>
+                                    <td>Information technology (IT)</td>
+                                </tr>
+                                <tr>
+                                    <td>Fatma Hosafi Saad Ibrahim Ageba</td>
+                                    <td>Database planning, design, and implementation</td>
+                                    <td>Information system (IS)</td>
+                                </tr>
+                                <tr>
+                                    <td>Amr Sabry Abd Elmoneim Amr</td>
+                                    <td>Sensors - Server connection</td>
+                                    <td>Information technology (IT)</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td colspan="2">
+                            <p><h3>Monitoring and Evaluation:</h3><br>
+                                The progress of the project will be evaluated every specific period of time with our mentor. Evaluation criteria will be based on the extent of progress in implementation and planning and comparing the results to what was the case previously and what it has become currently.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+        </div>
+
+
+
+    </div>
+    <script src=" {% static "js/manager.js" %} "></script>
+</body>
+</html>
