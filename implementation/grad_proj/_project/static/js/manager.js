@@ -6,28 +6,26 @@ const closePopup = document.getElementById('closePopup')
 closePopup.addEventListener('click',()=>{
     popup.style.display='none'
 })
-// window.onload = function () {
-//     for(let i=0 ; i<sideBTN.length;i++){
-//         sideBTN[0].style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';
-//         sideBTN[0].style.color = '#FEFEFC';
-//         sideBTN[6].addEventListener('click',()=>{
-//             popup.style.display='flex'
-//         })
-//     }
-// }
-// sideBTN.forEach(item => {
-//     item.addEventListener('click', () => {
-//         // Remove any existing black background from other list items
-//         sideBTN.forEach(otherItem =>{
-//             otherItem.style.background = '';
-//             otherItem.style.color = '#989897';
-//         });
+window.onload = function () {
+    for(let i=0 ; i<sideBTN.length;i++){
+        sideBTN[0].style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';
+        sideBTN[0].style.color = '#FEFEFC';
+        
+    }
+}
+sideBTN.forEach(item => {
+    item.addEventListener('click', () => {
+        // Remove any existing black background from other list items
+        sideBTN.forEach(otherItem =>{
+            otherItem.style.background = '';
+            otherItem.style.color = '#989897';
+        });
 
-//         // Set the background color of the clicked item to black
-//         item.style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';
-//         item.style.color = '#FEFEFC';
-//     });
-// });
+        // Set the background color of the clicked item to black
+        item.style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';
+        item.style.color = '#FEFEFC';
+    });
+});
 menuControls.addEventListener('click',()=>{
     menuBar.classList.toggle( "active" );
 })

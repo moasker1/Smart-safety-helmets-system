@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'management',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 ROOT_URLCONF = '_project.urls'
 
@@ -71,6 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '_project.wsgi.application'
+ASGI_APPLICATION = '_project.asgi.application'
 
 
 # Database
@@ -106,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ar'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Africa/Cairo'
 

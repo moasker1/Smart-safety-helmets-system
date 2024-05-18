@@ -10,9 +10,7 @@ window.onload = function () {
     for(let i=0 ; i<sideBTN.length;i++){
         sideBTN[0].style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';
         sideBTN[0].style.color = '#FEFEFC';
-        sideBTN[6].addEventListener('click',()=>{
-            popup.style.display='flex'
-        })
+        
     }
 }
 sideBTN.forEach(item => {

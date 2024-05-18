@@ -50,7 +50,10 @@ def login(request):
             messages.error(request, "Wrong password")
             return redirect('login')
             
-    return render(request, 'index.html')
+    return render(request, 'user/index.html')
+
+def home(request):
+    return render(request, "home.html")
 
 
 def supervisor_login(request):
@@ -111,7 +114,7 @@ def manager(request):
         'total_workers_salary': total_workers_salary, 
     }
 
-    return render(request, "manager.html", context)
+    return render(request, "user/manager.html", context)
 #============================================================================================================
 #============================================================================================================
 #============================================================================================================
@@ -142,7 +145,7 @@ def sites(request):
         "supervisors": supervisors,
     }
 
-    return render(request, "sites.html", context)
+    return render(request, "user/sites.html", context)
 
 def site_delete(request, id):
     db = firestore.client()
@@ -175,7 +178,7 @@ def helmets(request):
         "helmets": helmets,
     }
 
-    return render(request, "helmets.html", context)
+    return render(request, "user/helmets.html", context)
 
 def helmet_delete(request, id):
     db = firestore.client()
@@ -213,58 +216,59 @@ def workers(request):
         "sites": sites,
     }
 
-    return render(request, "workers.html", context)
+    return render(request, "user/workers.html", context)
 
-def worker_page(request, id):
-    worker = db.collection('workers').document(id).get()
+# def worker_page(request, id):
+#     worker = db.collection('workers').document(id).get()
 
-    worker_data = worker.to_dict()
-    helmet_id = worker_data.get("helmetID")
+#     worker_data = worker.to_dict()
+#     helmet_id = worker_data.get("helmetID")
 
-    helmet = None  
+#     helmet = None  
 
-    if helmet_id: 
-        helmet = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
+#     if helmet_id: 
+#         helmet = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
 
-    if "unassign2" in request.POST:
-        worker_name = request.POST.get('worker')
+#     if "unassign2" in request.POST:
+#         worker_name = request.POST.get('worker')
         
-        # Check if worker exists
-        worker_ref = db.collection('workers').where('name', '==', worker_name).stream()
+#         # Check if worker exists
+#         worker_ref = db.collection('workers').where('name', '==', worker_name).stream()
 
-        if not worker_ref:
-            messages.error(request, "Worker not found")
-            return redirect("worker_page", id=id)
+#         if not worker_ref:
+#             messages.error(request, "Worker not found")
+#             return redirect("worker_page", id=id)
 
-        for doc in worker_ref:
-            doc_id = doc.id
-            helmet_id = doc.to_dict().get('helmetID', None)
-            if not helmet_id:
-                messages.error(request, "Worker doesn't have a helmet assigned")
-                return redirect("worker_page", id=id)
-            # Update worker document
-            db.collection('workers').document(doc_id).update({
-                'helmetID': ""
-            })
+#         for doc in worker_ref:
+#             doc_id = doc.id
+#             helmet_id = doc.to_dict().get('helmetID', None)
+#             if not helmet_id:
+#                 messages.error(request, "Worker doesn't have a helmet assigned")
+#                 return redirect("worker_page", id=id)
+#             # Update worker document
+#             db.collection('workers').document(doc_id).update({
+#                 'helmetID': ""
+#             })
 
-            # Update helmet document
-            helmet_ref = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
-            for doc in helmet_ref:
-                doc2_id = doc.id
-                db.collection('helmets').document(doc2_id).update({
-                    'status': 'UnAssigned',
-                    'owner': ''
-                })
+#             # Update helmet document
+#             helmet_ref = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
+#             for doc in helmet_ref:
+#                 doc2_id = doc.id
+#                 db.collection('helmets').document(doc2_id).update({
+#                     'status': 'UnAssigned',
+#                     'owner': ''
+#                 })
 
-        messages.success(request, "Helmet unassigned successfully")
-        return redirect("worker_page", id=id)
+#         messages.success(request, "Helmet unassigned successfully")
+#         return redirect("worker_page", id=id)
 
 
-    context = {
-        "worker": worker_data if worker.exists else None,
-        "helmet": helmet,
-    }
-    return render(request, "workerpage.html", context)
+#     context = {
+#         "worker": worker_data if worker.exists else None,
+#         "helmet": helmet,
+#     }
+#     return render(request, "user/workerpage.html", context)
+
 
 def worker_delete(request, id):
     db = firestore.client()
@@ -383,7 +387,7 @@ def supervisor(request, id):
         "workers": workers,
         "supervisor_site": supervisor_site,
     }
-    return render(request, "supervisor.html", context)
+    return render(request, "user/supervisor.html", context)
 
 #============================================================================================================
 def supervisors(request):
@@ -412,7 +416,7 @@ def supervisors(request):
         "sites": sites,
     }
     
-    return render(request, "supervisors.html", context)
+    return render(request, "user/supervisors.html", context)
 
 def supervisor_delete(request, id):
     db = firestore.client()
@@ -423,7 +427,7 @@ def supervisor_delete(request, id):
 #============================================================================================================
 #============================================================================================================
 def organization(request):
-    return render(request, "organization.html")
+    return render(request, "user/organization.html")
 #============================================================================================================
 def reports(request):
     reports = db.collection('reports').stream()
@@ -443,5 +447,8 @@ def reports(request):
         "reports": reports,
     }
     
-    return render(request, "reports.html", context)
+    return render(request, "user/reports.html", context)
 #============================================================================================================
+def management_send_data():
+    sites = db.collection('sites').stream()
+    

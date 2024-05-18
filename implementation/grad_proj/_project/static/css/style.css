@@ -13,14 +13,7 @@ body{
     align-items:center;
     overflow: hidden;
 }
-.con{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 .block{
     position: absolute;
     width: 80px;
@@ -40,19 +33,6 @@ body{
 }
 .block:nth-child(3n + 4){
     background-color: #0286A0;
-}
-.logCon{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    min-height: 100%;
-    border-radius: 20px;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
 }
 .con1{
     position: absolute;
@@ -153,7 +133,7 @@ body{
 }
 .con2{
     position: absolute;
-    display: none;
+    display: flex;
     text-align: center;
     overflow: hidden;
     width: 60%;
@@ -176,6 +156,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 35px;
     flex-direction: column;
     top: 0;
     left: 0;
@@ -268,6 +249,13 @@ body{
     padding: 0 20px;
 }
 
+
+.con2 .headTitle{
+    color: #02CBF2;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+}
+.con2 img{margin-top: -10px;}
 .logCon .text-field{
     text-align: left;
     position: relative;
@@ -276,39 +264,33 @@ body{
     margin: 30px 0px;
     background-color: transparent;
     border: none;
-    border-bottom: 3px solid #fefefc;
     font-family: 'Nunito', sans-serif;
-    color: #fefefc;
+    color: #02CBF2;
     font-size: 20px;
-    
 }
-.con2 .headTitle{
-    color: #fefefc;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-}
-.con2 img{margin-top: -100px;}
 .text-field input{
-    position: absolute;
-    width: 100%;
+    width: 80%;
     padding: 5px;
     background-color: transparent;
     border: none;
     font-family: 'Nunito', sans-serif;
-    color: #fefefc;
+    color: #02CBF2;
     font-size: 20px;
+    transition: 0.2s ease-in-out;
 }
 .text-field input:focus{
     outline: none;
+    border-bottom: 3px solid #02CBF2;
+
 }
 .text-field input::placeholder{
-    color:#fefefc ;
+    color:#02CBF2 ;
     font-size: 20px;
     font-family: 'Nunito', sans-serif;
     pointer-events: none;
 }
 .text-field i{
-    color: #fefefc;
+    color: #02CBF2;
     font-size: 15px;
 }
 .con2 button{
@@ -323,11 +305,6 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     transition: 0.5s ease-in-out;
     cursor: pointer;
-}
-.logCon button:hover{
-    background-color:#0286A0;
-    color: #fefefc;
-    box-shadow: 1px 1px 10px #333;
 }
 
 

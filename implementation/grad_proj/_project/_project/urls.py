@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('santapanel/', admin.site.urls),
-    path('', include('user.urls')),
+    path('user/', include('user.urls')),
+    path('management/', include('management.urls')),
 ]

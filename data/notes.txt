@@ -3,6 +3,12 @@ messages design
 left list 
 pop up forms
 reports page
+=====================
+expenses 
+employees money (dept, minus, prizes)
+company profits
+company buying (basic, variant, building stuff)
+net profit (calculate)
 
 
 
@@ -49,61 +55,4 @@ reports page
 
 
 
-I have a django web project , its database is firestore from firebase , no sql document - oriented db 
-and here is a configrations of firestore with django by a sdk file from firebase :-
-import pyrebase
-import firebase_admin
-from firebase_admin import credentials, firestore, auth
 
-cred = credentials.Certificate("D:\Graduation project\implementation\grad_proj\_project\smart-hemlet-firebase-adminsdk-a6yrp-13de9ef48d.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-config={
-    "apiKey": "AIzaSyD8hciQSvz9rFMHSDwcvA3qZXLz8wHPiVI",
-    "authDomain": "smart-hemlet.firebaseapp.com",
-    "databaseURL":"https://smart-hemlet-default-rtdb.firebaseio.com/",
-    "projectId": "smart-hemlet",
-    "storageBucket": "smart-hemlet.appspot.com",
-    "messagingSenderId": "506905334714",
-    "appId": "1:506905334714:web:8f961a0ed8e7d9a3fc4383",
-}
-firebase = pyrebase.initialize_app(config)
-authe = firebase.auth()
-database = firebase.database()
- firebase = pyrebase.initialize_app(config)
-authe = firebase.auth()
-database = firebase.database()
-
-and this is 2 functions to create and delete and retrieve documents in db :-
-def supervisors(request):
-    supervisors = db.collection('supervisors').stream()
-    if "addSupervisor" in request.POST :
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        supervisor_ref = db.collection('supervisors').document()
-        supervisor_ref.set({
-            'name': name,
-            'phone': phone,
-            'email': email,
-            'password': password
-        })
-        messages.success(request, "new supervisor has been added")
-        return redirect("supervisors")
-
-    context = {
-        "supervisors": supervisors,
-    }
-    
-    return render(request, "supervisors.html", context)
-#====================================================================================================================
-def supervisor_delete(request, id):
-    db = firestore.client()
-    db.collection('supervisors').document(id).delete()
-    messages.success(request, "supervisor deleted successfully !!")
-    return redirect('supervisors')
-
-
-save these information and understand it well because I want your help with some future updates in my project 
