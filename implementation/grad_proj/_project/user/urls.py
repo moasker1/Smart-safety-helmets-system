@@ -9,7 +9,7 @@ urlpatterns = [
     path('supervisor_login',views.supervisor_login, name='supervisor_login' ),
     path('manager',views.manager, name='manager' ),
     path('supervisor/<str:id>',views.supervisor, name='supervisor' ),
-    path('ws/worker_page/<str:id>', WorkerPageConsumer.as_asgi()),
+    path('worker_page/<str:id>', views.worker_page, name='worker_page'),
     path('sites',views.sites, name='sites' ),
     path('helmets',views.helmets, name='helmets' ),
     path('reports',views.reports, name='reports' ),

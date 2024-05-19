@@ -8,8 +8,12 @@ from datetime import datetime,timedelta
 
 def management(request):
     current_date = timezone.now()
+
     start_of_month = current_date.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
     end_of_month = (start_of_month + timedelta(days=32)).replace(day=1, hour=0, minute=0, second=0, microsecond=0) - timedelta(seconds=1)
+
+    start_of_year = current_date.replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
+    end_of_year = current_date.replace(month=12, day=31, hour=23, minute=59, second=59, microsecond=999999)
 
     expenses = Expense.objects.all()
     incomes = Income.objects.all()
@@ -22,6 +26,9 @@ def management(request):
     month_expenses = Expense.objects.filter(date__gte=start_of_month, date__lte=end_of_month).aggregate(Sum('amount'))['amount__sum'] or 0
     month_profit = month_incomes - month_expenses
 
+    year_incomes = Income.objects.filter(date__gte=start_of_year, date__lte=end_of_year).aggregate(Sum('amount'))['amount__sum'] or 0
+    year_expenses = Expense.objects.filter(date__gte=start_of_year, date__lte=end_of_year).aggregate(Sum('amount'))['amount__sum'] or 0
+    year_profit = year_incomes - year_expenses
 
     context = {
         "total_incomes" : total_incomes,
@@ -30,13 +37,15 @@ def management(request):
         "month_incomes" : month_incomes,
         "month_expenses" : month_expenses,
         "month_profit" : month_profit,
+        "year_incomes" : year_incomes,
+        "year_expenses" : year_expenses,
+        "year_profit" : year_profit,
     }
 
     return render(request, "management/management.html", context)
 
 def incomes(request):
     incomes = Income.objects.all()
-    total_incomes = incomes.aggregate(Sum('amount'))['amount__sum'] or 0
     if "addIncome" in request.POST:
         site  = request.POST.get("site")
         amount = request.POST.get("amount")

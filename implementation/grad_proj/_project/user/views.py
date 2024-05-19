@@ -14,7 +14,7 @@ import pyrebase
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
-cred = credentials.Certificate("D:\Graduation project\implementation\grad_proj\_project\smart-hemlet-firebase-adminsdk-a6yrp-13de9ef48d.json")
+cred = credentials.Certificate("D:\graduation project (smart helmet)\implementation\grad_proj\_project\smart-hemlet-firebase-adminsdk-a6yrp-13de9ef48d.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 config={
@@ -85,6 +85,7 @@ def logout_user(request):
     return render(request, 'logout.html')
 
 def manager(request):
+    reports = db.collection('reports').stream()
     sites = db.collection('sites').stream()
     supervisors = db.collection('supervisors').stream()
     helmets = db.collection('helmets').stream()
@@ -105,6 +106,7 @@ def manager(request):
         'supervisors': supervisors,
         'helmets': helmets,
         'workers': workers,
+        "reports": reports,
         'total_number_of_helmets': total_number_of_helmets,
         'total_number_of_workers': total_number_of_workers,
         'not_assigned_helmets': len(not_assigned_helmets),
@@ -218,57 +220,52 @@ def workers(request):
 
     return render(request, "user/workers.html", context)
 
-# def worker_page(request, id):
-#     worker = db.collection('workers').document(id).get()
+def worker_page(request, id):
+    worker = db.collection('workers').document(id).get()
+    worker_data = worker.to_dict()
+    helmet_id = worker_data.get("helmetID")
+    worker_id = worker.id
 
-#     worker_data = worker.to_dict()
-#     helmet_id = worker_data.get("helmetID")
+    helmet = None  
+    if helmet_id:
+        helmet = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
 
-#     helmet = None  
+    if "unassign2" in request.POST:
+        worker_name = request.POST.get('worker')
+        worker_ref = db.collection('workers').where('name', '==', worker_name).stream()
 
-#     if helmet_id: 
-#         helmet = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
+        if not worker_ref:
+            messages.error(request, "Worker not found")
+            return redirect("worker_page", id=id)
 
-#     if "unassign2" in request.POST:
-#         worker_name = request.POST.get('worker')
-        
-#         # Check if worker exists
-#         worker_ref = db.collection('workers').where('name', '==', worker_name).stream()
+        for doc in worker_ref:
+            doc_id = doc.id
+            helmet_id = doc.to_dict().get('helmetID', None)
+            if not helmet_id:
+                messages.error(request, "Worker doesn't have a helmet assigned")
+                return redirect("worker_page", id=id)
 
-#         if not worker_ref:
-#             messages.error(request, "Worker not found")
-#             return redirect("worker_page", id=id)
+            db.collection('workers').document(doc_id).update({
+                'helmetID': ""
+            })
 
-#         for doc in worker_ref:
-#             doc_id = doc.id
-#             helmet_id = doc.to_dict().get('helmetID', None)
-#             if not helmet_id:
-#                 messages.error(request, "Worker doesn't have a helmet assigned")
-#                 return redirect("worker_page", id=id)
-#             # Update worker document
-#             db.collection('workers').document(doc_id).update({
-#                 'helmetID': ""
-#             })
+            helmet_ref = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
+            for doc in helmet_ref:
+                doc2_id = doc.id
+                db.collection('helmets').document(doc2_id).update({
+                    'status': 'UnAssigned',
+                    'owner': ''
+                })
 
-#             # Update helmet document
-#             helmet_ref = db.collection('helmets').where('helmetID', '==', helmet_id).stream()
-#             for doc in helmet_ref:
-#                 doc2_id = doc.id
-#                 db.collection('helmets').document(doc2_id).update({
-#                     'status': 'UnAssigned',
-#                     'owner': ''
-#                 })
+        messages.success(request, "Helmet unassigned successfully")
+        return redirect("worker_page", id=id)
 
-#         messages.success(request, "Helmet unassigned successfully")
-#         return redirect("worker_page", id=id)
-
-
-#     context = {
-#         "worker": worker_data if worker.exists else None,
-#         "helmet": helmet,
-#     }
-#     return render(request, "user/workerpage.html", context)
-
+    context = {
+        "worker": worker_data if worker.exists else None,
+        "helmet": helmet,
+        "worker_id": worker_id,
+    }
+    return render(request, "user/workerpage.html", context)
 
 def worker_delete(request, id):
     db = firestore.client()

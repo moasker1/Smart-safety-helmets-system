@@ -204,13 +204,14 @@ body{
 }
 .container1 div{
     width: 100%;
-    height: 25%;
+    height: 30%;
     display: flex;
     align-items: start;
     justify-content: center;
-    gap: 15px;
+    gap: 9px;
     flex-direction: row;
     flex-wrap: nowrap;
+    padding: 8px 12px 1px 0px;
 }
 .container1 .reports{
     width: 100%;
@@ -305,6 +306,7 @@ body{
     color: #02CBF2;
     font-weight: 700;
 }
+
 .container1 .card .cardBody .left{
     width: 50%;
     height: 100%;
@@ -671,7 +673,7 @@ body{
 }
 .success::before {
     content: "✅";
-    margin-left: 10px;
+    margin-left: 15px;
 }
 .warning {
     background-color: #ebedef;
@@ -794,4 +796,9 @@ body{
     font-size: large;
     border-radius: 20px;
     align-content: center;
+}
+.deletebtn:hover{
+    width: 12%;
+    height: 35px;
+    background-color: rgb(104, 1, 1);
 }

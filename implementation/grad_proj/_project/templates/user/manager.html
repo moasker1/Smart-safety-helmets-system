@@ -58,12 +58,6 @@
                     <span>About Us</span>
                 </a>
             </li>
-            <li>
-                <a href="{% url "reports" %}" style="cursor: pointer;" id="sideBTN">
-                    <i class="fa-solid fa-bug"></i>
-                    <span>Reports</span>
-                </a>
-            </li>
         </ul>
 
         <div class="bottomSide">
@@ -129,29 +123,20 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
             <div class="reports">
                 <h2 > <i class="fa-solid fa-bug"></i> Reports </h2>
+                {% for report in reports %}
                 <div class="reportCard">
-                    <h3 class="super">mohamed</h3>
+                    <h3 class="super">{{report.to_dict.supervisor}}</h3>
                     <div>
-                        <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit blanditiis voluptas mollitia esse praesentium dolorum vel, qui aut molestias, voluptates amet dolor adipisci, quae quia delectus quasi neque dignissimos nulla architecto labore explicabo! Doloremque quod ducimus nesciunt, veniam voluptatibus eligendi voluptate odio. Accusamus architecto ad, consequuntur, iure nemo, aut autem reiciendis unde tempora rerum iusto pariatur laborum laudantium qui nisi aliquam dolorum minima cum iste! Sequi animi officiis magnam optio dolor aliquid, sed omnis eaque, doloremque laborum sit nisi doloribus consequuntur consequatur quod odio earum est nulla consectetur deserunt pariatur. Alias fugit fuga numquam dignissimos repellat illo laborum quod quibusdam.</p>
+                        <p class="content" style="font-size:larger; font-weight:500;" >{{report.to_dict.report}}</p>
                     </div>
-                    <span>date</span>
+                    <span>{{report.to_dict.date}}</span>
                 </div> 
-                <div class="reportCard">
-                    <h3 class="super">mohamed</h3>
-                    <div>
-                        <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit blanditiis voluptas mollitia esse praesentium dolorum vel, qui aut molestias, voluptates amet dolor adipisci, quae quia delectus quasi neque dignissimos nulla architecto labore explicabo! Doloremque quod ducimus nesciunt, veniam voluptatibus eligendi voluptate odio. Accusamus architecto ad, consequuntur, iure nemo, aut autem reiciendis unde tempora rerum iusto pariatur laborum laudantium qui nisi aliquam dolorum minima cum iste! Sequi animi officiis magnam optio dolor aliquid, sed omnis eaque, doloremque laborum sit nisi doloribus consequuntur consequatur quod odio earum est nulla consectetur deserunt pariatur. Alias fugit fuga numquam dignissimos repellat illo laborum quod quibusdam.</p>
-                    </div>
-                    <span>date</span>
-                </div> 
-                <div class="reportCard">
-                    <h3 class="super">mohamed</h3>
-                    <div>
-                        <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit blanditiis voluptas mollitia esse praesentium dolorum vel, qui aut molestias, voluptates amet dolor adipisci, quae quia delectus quasi neque dignissimos nulla architecto labore explicabo! Doloremque quod ducimus nesciunt, veniam voluptatibus eligendi voluptate odio. Accusamus architecto ad, consequuntur, iure nemo, aut autem reiciendis unde tempora rerum iusto pariatur laborum laudantium qui nisi aliquam dolorum minima cum iste! Sequi animi officiis magnam optio dolor aliquid, sed omnis eaque, doloremque laborum sit nisi doloribus consequuntur consequatur quod odio earum est nulla consectetur deserunt pariatur. Alias fugit fuga numquam dignissimos repellat illo laborum quod quibusdam.</p>
-                    </div>
-                    <span>date</span>
-                </div> 
+                {% endfor %}
             </div>
         </div>
 
