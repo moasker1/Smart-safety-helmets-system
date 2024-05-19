@@ -1,14 +1,18 @@
 home page
 messages design 
 left list 
-pop up forms
 reports page
+
+upload on github
+delete popups for helmet app
+make site inputs in managemest select inputs
+handle employees in management 
+handle login as supervisor by site verfication
+update functions
+deploy
+
 =====================
-expenses 
-employees money (dept, minus, prizes)
-company profits
-company buying (basic, variant, building stuff)
-net profit (calculate)
+
 
 
 

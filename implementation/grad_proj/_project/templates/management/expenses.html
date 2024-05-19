@@ -18,24 +18,18 @@
     {% endif %}
 
     <div class="window" id="popup">
-        <div class="window_content">
-            <i id="closePopup" class="fa-solid fa-xmark close"></i>
-            <h1>Just a sec.....</h1>
+        <i id="closePopup" class="fa-solid fa-xmark close"></i>
+        <div class="window_content" id="window_content">
         </div>    
+    </div>   
     </div>
     <div class="menuBar">
         <div class="head">
             <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
-            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <a href="{% url "home" %}" ><img src=" {% static "images/smart safety helmet3.png" %} " alt="logo"></a>
             <h2>Smart Helmet</h2>
         </div>
         <ul>
-            <li>
-                <a href="{% url "home" %}"  >
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Home</span>
-                </a>
-            </li>
             <li>
                 <a href="{% url "management" %}"  >
                     <i class="fa-solid fa-chart-line"></i>
@@ -99,7 +93,17 @@
                             <td>{{expense.expense_type}}</td>
                             <td>{{expense.amount}}</td>
                             <td>{{expense.date}}</td>
-                            <td><a style="text-decoration:none;" id="" href=""><i style="cursor: pointer; color:red; " class="fa-solid fa-trash"></i></a></td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>Are you sure you want to delete this row</h2>
+                                    <br>
+                                    <i class="fa-regular fa-trash-can" style="color: #ff3333;font-size: 100px;"></i>
+                                    <br>
+                                    <div style="width: 100%;display: flex;justify-content: center;gap: 20px;">
+                                        <a class="deletebtn" href="{% url "delete_expense" expense.id %}">delete</a>
+                                    </div>
+                                </div>
+                                '><i style="cursor: pointer; color:red; " class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         {% endfor %}
 
@@ -109,5 +113,7 @@
         </div>
     </div>
     <script src=" {% static "js/manager.js" %} "></script>
+    <script src=" {% static "js/popup.js" %} "></script>
+
 </body>
 </html>

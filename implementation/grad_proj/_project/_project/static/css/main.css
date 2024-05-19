@@ -203,7 +203,7 @@ body{
     background: #F1F5F9;
 }
 .container1 div{
-    width: 95%;
+    width: 100%;
     height: 25%;
     display: flex;
     align-items: start;
@@ -305,6 +305,7 @@ body{
     color: #02CBF2;
     font-weight: 700;
 }
+
 .container1 .card .cardBody .left{
     width: 50%;
     height: 100%;
@@ -326,10 +327,9 @@ body{
     background: #98989761;
 }
 .window_content{
-    position: absolute;
-    top: 10%;
-    width: 95%;
-    height: 80%;
+    position: relative;
+    width: 80%;
+    height: 50%;
     background: #FEFEFC;
     border-radius: 30px;
     z-index: 100;
@@ -338,16 +338,22 @@ body{
     align-items: center;
     justify-content: center;
 }
-.window_content .close{
+.close{
     position: absolute;
     top: 2%;
     left: 1%;
     font-size: 30px;
     cursor: pointer;
-    color: #989897;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #c10000;
+    color: #FEFEFC;
+    text-align: center;
 }
-.window_content .close:hover{
+.close:hover{
     color: #c10000;
+    background-color: #FEFEFC;
 }
 .up,.down{
     display: flex;
@@ -666,7 +672,7 @@ body{
 }
 .success::before {
     content: "✅";
-    margin-left: 10px;
+    margin-left: 15px;
 }
 .warning {
     background-color: #ebedef;
@@ -734,27 +740,64 @@ body{
         opacity: 0;
     }
 }
-
-
-.helmetdata{
-    background-color: #0288a3;
+.bgImage{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
 }
-
-
+.homeDiv{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    position: absolute;
+    z-index: 2;
+}
 .homeUser{
-    background-color: #02CBF2;
-    margin-right: 10px;
-    width: 50%;
-    height: 650px;
-    text-align: center;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
 }
-.managementUser{
-    background-color: #989897;
-    margin-left: 10px;
-    width: 50%;
-    height: 650px;
-    text-align: center;
-}
-.homeUser a , .managementUser a{
+.homeUser a {
+    font-size: 25px;
     text-decoration: none;
+    width: 45%;
+    min-height: 50%;
+    max-height: fit-content;
+    background-color: #D9D9D5;
+    box-shadow: 1px 1px 15px #ebedef;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden; 
+}
+.homeUser a:hover{
+    cursor: pointer;
+    background-color: #0288a3;
+    color: #FEFEFC; 
+    width: 50%;   
+}
+
+.deletebtn{
+    text-decoration: none;
+    border: 1px solid #000;
+    color: #ffffff;
+    background-color: #c91111;
+    width: 10%;
+    text-align: center;
+    height: 30px;
+    font-weight: 300;
+    font-size: large;
+    border-radius: 20px;
+    align-content: center;
+}
+.deletebtn:hover{
+    width: 12%;
+    height: 35px;
+    background-color: rgb(104, 1, 1);
 }

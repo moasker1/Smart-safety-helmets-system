@@ -10,15 +10,14 @@
 </head>
 <body>
     <div class="window" id="popup">
-        <div class="window_content">
-            <i id="closePopup" class="fa-solid fa-xmark close"></i>
-            <h1>Just a sec.....</h1>
+        <i id="closePopup" class="fa-solid fa-xmark close"></i>
+        <div class="window_content" id="window_content">
         </div>    
     </div>
     <div class="menuBar">
         <div class="head">
             <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
-            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <a href="{% url "home" %}" ><img src=" {% static "images/smart safety helmet3.png" %} " alt="logo"></a>
             <h2>Smart Helmet</h2>
         </div>
         <ul>
@@ -141,10 +140,25 @@
                             <td>{{ supervisor.to_dict.phone }}</td>
                             <td>{{ supervisor.to_dict.email }}</td>
                             <td>{{ supervisor.to_dict.site }}</td>
-                            <td><i class="fa-regular fa-pen-to-square"></i></td>
-                            <td>
-                            <a id="" href="{% url "supervisor_delete" supervisor.id %}"><i  class="fa-solid fa-trash"></i></a>
-                            </td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>Update section </h2>
+                                    <div style="width: 100%;display: flex;justify-content: center;gap: 20px;">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                '><i class="fa-regular fa-pen-to-square"></i></i></a></td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>are you sure you want to delete this</h2>
+                                    <div style="width: 100%;display: flex;justify-content: center;gap: 20px;">
+                                        <a href="" style="text-decoration:none;border:1px solid #000;color:#000;">delete</a>
+                                        <a href="" style="text-decoration:none;border:1px solid #000;color:#000;">cancel</a>
+                                    </div>
+                                </div>
+                                '><i style="cursor: pointer; color:red; " class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -153,5 +167,7 @@
         </div>
     </div>
     <script src=" {% static "js/manager.js" %} "></script>
+    <script src=" {% static "js/popup.js" %} "></script>
+
 </body>
 </html>

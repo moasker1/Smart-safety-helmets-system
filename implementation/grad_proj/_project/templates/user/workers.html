@@ -9,16 +9,17 @@
     <title>workers page</title>
 </head>
 <body>
-    <div class="window" id="popup">
-        <div class="window_content">
-            <i id="closePopup" class="fa-solid fa-xmark close"></i>
-            <h1>Just a sec.....</h1>
-        </div>    
-    </div>
+<!-- 7-------------------------------------------------------------------------------- -->
+<div class="window" id="popup">
+    <i id="closePopup" class="fa-solid fa-xmark close"></i>
+    <div class="window_content" id="window_content">
+    </div>    
+</div>
+<!-- 7-------------------------------------------------------------------------------- -->
     <div class="menuBar">
         <div class="head">
             <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
-            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <a href="{% url "home" %}" ><img src=" {% static "images/smart safety helmet3.png" %} " alt="logo"></a>
             <h2>Smart Helmet</h2>
         </div>
         <ul>
@@ -127,8 +128,27 @@
                             <td>{{worker.to_dict.salary}}</td>
                             <td>{{worker.to_dict.helmetID}}</td>
                             <td>{{worker.to_dict.site}}</td>
-                            <td><a id=""><i style="cursor: pointer; color:green;" class="fa-regular fa-pen-to-square"></i></a></td>
-                            <td><a href="{% url "worker_delete" worker.id %}"><i style="cursor: pointer; color:red; " class="fa-solid fa-trash"></i></a></td>
+<!-- 7-------------------------------------------------------------------------------- -->
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>Update section </h2>
+                                    <div style="width: 100%;display: flex;justify-content: center;gap: 20px;">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                '><i class="fa-regular fa-pen-to-square"></i></i></a></td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>are you sure you want to delete this</h2>
+                                    <div style="width: 100%;display: flex;justify-content: center;gap: 20px;">
+                                        <a href="" style="text-decoration:none;border:1px solid #000;color:#000;">delete</a>
+                                        <a href="" style="text-decoration:none;border:1px solid #000;color:#000;">cancel</a>
+                                    </div>
+                                </div>
+                                '><i style="cursor: pointer; color:red; " class="fa-solid fa-trash"></i></a></td>
+<!-- 7-------------------------------------------------------------------------------- -->
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -139,5 +159,9 @@
 
     </div>
     <script src=" {% static "js/manager.js" %} "></script>
+<!-- 7-------------------------------------------------------------------------------- -->
+    <script src=" {% static "js/popup.js" %} "></script>
+<!-- 7-------------------------------------------------------------------------------- -->
+
 </body>
 </html>

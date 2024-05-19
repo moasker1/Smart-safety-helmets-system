@@ -10,15 +10,14 @@
 </head>
 <body>
     <div class="window" id="popup">
+        <i id="closePopup" class="fa-solid fa-xmark close"></i>
         <div class="window_content">
-            <i id="closePopup" class="fa-solid fa-xmark close"></i>
-            <h1>Just a sec.....</h1>
         </div>    
     </div>
     <div class="menuBar">
         <div class="head">
             <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
-            <img src=" {% static "images/smart safety helmet3.png" %} " alt="logo">
+            <a href="{% url "home" %}" ><img src=" {% static "images/smart safety helmet3.png" %} " alt="logo"></a>
             <h2>Smart Helmet</h2>
         </div>
         <ul>
@@ -60,53 +59,52 @@
         <div class="container1" id="container1">
             <h2 class="main-title"> DASHBOARD </h2>
             <h2 style="margin: 15px;"> <i class="fa-solid fa-chart-simple"></i> Statistics </h2>
-            <div>
+            <div >
                 <div class="card">
-                    <h2>Helmet Statistics</h2>
-                    <div class="cardBody">
+                    <h2>Income</h2>
+                    <div class="cardBody" style="width:0%; height: 20%;">
                         <div class="left">
-                            <img src="{% static "images/smart-helmet.png" %}" alt="">
                         </div>
                         <div class="right">
-                            <p>Helmets <span>{{total_number_of_helmets}}</span></p>
-                            <p>Unassigned Helmets <span>{{not_assigned_helmets}}</span></p>
+                            <p>Month Income <span>{{month_incomes}}</span></p>
+                            <p>Year Income <span>{{0}}</span></p>
+                            <p>Total Income<span>{{total_incomes}}</span></p>
                         </div>
                     </div>
                 </div>
                 <div class="card">                
-                    <h2>Workers Statistics</h2>
-                    <div class="cardBody">
-                        <div class="left">
-                            <img src="{% static "images/miner.gif" %}" alt="">
-                            
+                    <h2>Expenses</h2>
+                    <div class="cardBody" style="width:0%; height: 20%;">
+                        <div class="left">                            
                         </div>
                         <div class="right">
-                            <p>Workers <span>{{total_number_of_workers}}</span></p>
-                            <p>Unassigned Workers  <span>{{not_assigned_workers}}</span></p>
+                            <p>Month Expenses <span>{{month_expenses}}</span></p>
+                            <p>Year Expenses <span>{{0}}</span></p>
+                            <p>Total Expenses<span>{{total_expenses}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">                
+                    <h2>Net Profit</h2>
+                    <div class="cardBody" style="width:0%; height: 20%;">
+                        <div class="left">                            
+                        </div>
+                        <div class="right">
+                            <p>Month Profit <span>{{month_profit}}</span></p>
+                            <p>Year Profit <span>{{0}}</span></p>
+                            <p>Total Profit<span>{{total_profit}}</span></p>
                         </div>
                     </div>
                 </div>
                 <div class="card">                
-                    <h2>Supervisors Statistics</h2>
-                    <div class="cardBody">
+                    <h2>Emplyees</h2>
+                    <div class="cardBody" style="width:0%; height: 20%;">
                         <div class="left">
-                            <img src="{% static "images/man.png" %}" alt="">
-                            
-                        </div>
                         <div class="right">
-                            <p>Supervisors <span>{{total_number_of_supervisors}}</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">                
-                    <h2>Sites Statistics</h2>
-                    <div class="cardBody">
-                        <div class="left">
-                            <img src="{% static "images/location.png" %}" alt="">
-                            
-                        </div>
-                        <div class="right">
-                            <p>Sites <span>{{total_number_of_sites}}</span></p>
+                            <p>Workers <span>{{0}}</span></p>
+                            <p>Supervisors <span>{{0}}</span></p>
+                            <p>total Salaries <span>{{0}}</span></p>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,6 @@
 const sideBTN = document.querySelectorAll('#sideBTN');
 const menuBar = document.querySelector('.menuBar')
 const menuControls = document.getElementById('menuControls')
-const popup = document.getElementById('popup')
-const closePopup = document.getElementById('closePopup')
-closePopup.addEventListener('click',()=>{
-    popup.style.display='none'
-})
 window.onload = function () {
     for(let i=0 ; i<sideBTN.length;i++){
         sideBTN[0].style.background = 'linear-gradient(90deg,#02CBF2,#0286A0)';

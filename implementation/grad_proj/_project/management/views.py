@@ -1,13 +1,42 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from user.views import management_send_data
 from .models import Income , Expense, Purchase
 from django.contrib import messages
+from django.db.models import Sum
+from django.utils import timezone
+from datetime import datetime,timedelta
 
 def management(request):
-    return render(request, "management/management.html")
+    current_date = timezone.now()
+    start_of_month = current_date.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    end_of_month = (start_of_month + timedelta(days=32)).replace(day=1, hour=0, minute=0, second=0, microsecond=0) - timedelta(seconds=1)
+
+    expenses = Expense.objects.all()
+    incomes = Income.objects.all()
+
+    total_incomes = incomes.aggregate(Sum('amount'))['amount__sum'] or 0
+    total_expenses = expenses.aggregate(Sum('amount'))['amount__sum'] or 0
+    total_profit = total_incomes - total_expenses
+
+    month_incomes = Income.objects.filter(date__gte=start_of_month, date__lte=end_of_month).aggregate(Sum('amount'))['amount__sum'] or 0
+    month_expenses = Expense.objects.filter(date__gte=start_of_month, date__lte=end_of_month).aggregate(Sum('amount'))['amount__sum'] or 0
+    month_profit = month_incomes - month_expenses
+
+
+    context = {
+        "total_incomes" : total_incomes,
+        "total_expenses" : total_expenses,
+        "total_profit" : total_profit,
+        "month_incomes" : month_incomes,
+        "month_expenses" : month_expenses,
+        "month_profit" : month_profit,
+    }
+
+    return render(request, "management/management.html", context)
 
 def incomes(request):
     incomes = Income.objects.all()
+    total_incomes = incomes.aggregate(Sum('amount'))['amount__sum'] or 0
     if "addIncome" in request.POST:
         site  = request.POST.get("site")
         amount = request.POST.get("amount")
@@ -42,3 +71,22 @@ def purchases(request):
         return redirect("purchases")
     context = {"purchases" : purchases}
     return render(request, "management/purchases.html", context)
+# ==============================================================================
+def delete_income(request, id):
+    income_to_delete = get_object_or_404(Income, id =id )
+    income_to_delete.delete()
+    messages.success(request, "Income deleted successfully")
+    return redirect("incomes")
+
+def delete_expense(request, id):
+    expense_to_delete = get_object_or_404(Expense, id =id )
+    expense_to_delete.delete()
+    messages.success(request, "Expense deleted successfully")
+    return redirect("expenses")
+
+def delete_purchase(request, id):
+    purchase_to_delete = get_object_or_404(Purchase, id =id )
+    purchase_to_delete.delete()
+    messages.success(request, "purchase deleted successfully")
+    return redirect("purchases")
+    
