@@ -211,7 +211,7 @@ body{
     gap: 9px;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 8px 12px 1px 0px;
+    padding: 8px 12px 25px 0px;
 }
 .container1 .reports{
     width: 100%;
@@ -801,4 +801,30 @@ body{
     width: 12%;
     height: 35px;
     background-color: rgb(104, 1, 1);
+}
+
+.selectP{
+    display: flex;
+    margin-right: 7px;
+    font-size: large;
+    font-weight: 700;}
+    
+.selectDiv{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;        
+    }
+.updatediv input{
+    width:20%;
+    height: 40px;
+    border-radius: 30px;
+    margin: 20px;
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 10px #989897;
+    padding: 0px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
 }

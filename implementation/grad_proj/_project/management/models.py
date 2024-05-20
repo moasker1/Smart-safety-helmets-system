@@ -16,3 +16,11 @@ class Purchase(models.Model):
     purchase_type  = models.CharField(max_length=100, blank=True, null=True)
     amount = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
 
+class Employee(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    salary = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
+    remain_salary = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
+    job = models.CharField(max_length=100, blank=True, null=True)
+
+
+

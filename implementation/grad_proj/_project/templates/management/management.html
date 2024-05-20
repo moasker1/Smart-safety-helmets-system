@@ -45,6 +45,12 @@
                     <span>purchases</span>
                 </a>
             </li>
+            <li>
+                <a href="{% url "employees" %}" >
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>employees</span>
+                </a>
+            </li>
         </ul>
 
         <div class="bottomSide">
@@ -104,9 +110,9 @@
                     <div class="cardBody" style="width:0%; height: 20%;">
                         <div class="left">
                         <div class="right">
-                            <p>Workers <span>{{0}}</span></p>
-                            <p>Supervisors <span>{{0}}</span></p>
-                            <p>total Salaries <span>{{0}}</span></p>
+                            <p>Workers <span>{{workers_num}}</span></p>
+                            <p>Supervisors <span>{{supervisors_num}}</span></p>
+                            <p>total Salaries <span>{{total_salaries}}</span></p>
                         </div>
                     </div>
                 </div>

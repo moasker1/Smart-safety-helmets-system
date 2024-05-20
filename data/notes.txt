@@ -1,10 +1,8 @@
 home page
 messages design 
 left list 
-reports page
 
 upload on github
-delete popups for helmet app
 make site inputs in managemest select inputs
 handle employees in management 
 handle login as supervisor by site verfication

@@ -815,3 +815,56 @@ body{
     text-align: center;
     align-items: center;        
     }
+
+.updatediv{
+    height: auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction:row;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    border-radius: 30px;
+}
+.updatediv input{
+    width:60%;
+    height: 40px;
+    border-radius: 30px;
+    margin: 20px;
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 10px #989897;
+    padding: 0px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+}
+.updatediv p{
+    font-weight: 800;
+
+}
+.updatediv .updateinputs{
+    display: flex;
+}
+
+.updatebtn{
+    text-decoration: none;
+    border: 1px solid #000;
+    color: #ffffff;
+    background-color: #349b08;
+    width: 10%;
+    text-align: center;
+    height: 30px;
+    font-weight: 300;
+    font-size: large;
+    border-radius: 20px;
+    align-content: center;
+    display:block;
+}
+.updatebtn:hover{
+    width: 12%;
+    height: 35px;
+    background-color: rgb(5, 77, 2);
+    cursor: pointer;
+}
