@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'user',
     'management',
     'chat',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -54,11 +54,14 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
+
+ASGI_APPLICATION = '_project.asgi.application'
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            'hosts': [('127.0.0.1', 6379)],
         },
     },
 }
@@ -82,7 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '_project.wsgi.application'
-ASGI_APPLICATION = '_project.asgi.application'
 
 
 # Database

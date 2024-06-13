@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>content page</title> 
+</head>
+<body>
+    <div class="window" id="popup">
+        <i id="closePopup" class="fa-solid fa-xmark closebtn"></i>
+        <div class="window_content" id="window_content">
+        </div>    
+    </div>
+
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="{% static "images/smart safety helmet3.png" %}" alt="">
+            </div>
+
+            <span class="logo_name">Smart helmet</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="{% url "manager" %}" >
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a style="cursor: pointer;" id="detailbtn">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Content</span>
+                </a>
+                <div id="detaildiv">
+                    <a href="{% url "sites" %}"><span class="link-name">Sites</span></a>
+                    <a href="{% url "supervisors" %}"><span class="link-name">Supervisors</span></a>
+                    <a href="{% url "workers" %}"><span class="link-name">Workers</span></a>
+                    <a href="{% url "helmets" %}"><span class="link-name">Helmets</span></a>
+                </div>
+            </li>
+                <li><a href="{% url "analytics" %}" class="selected">
+                    <i class="uil uil-chart" ></i>
+                    <span class="link-name">Analytics</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-dollar-sign"></i>
+                    <span class="link-name">financial</span>
+                </a></li>
+                <li><a href="{% url "reports" %}">
+                    <i class="uil uil-comments"></i>
+                    <span class="link-name">reports</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="{% url "login" %}">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <img src="images/profile.jpg" alt="">
+        </div>
+        <div class="dash-content"style="padding-top: 40px;">
+            <h2 class="main-title" >Analytics</h2>
+        </div>
+        <div class="dash-content">
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-chart"></i>
+                    <span class="text">Graphs</span>
+                </div>
+                <div class="activite-data">
+                    <div class="bars-data">
+                        <span class="text">Loses details</span>
+                    <div class="bars-con">
+                        <div class="column">
+                            <div class="bar">
+                                <div class="percent per1"></div>
+                                <div class="fill fill1"></div>
+                            </div>
+                            <span class="bartitle">loses0</span>
+                        </div>
+                        <div class="column">
+                            <div class="bar">
+                                <div class="percent per2"></div>
+                                <div class="fill fill2"></div>
+                            </div>
+                            <span class="bartitle">loses0</span>
+                        </div>
+                        <div class="column">
+                            <div class="bar">
+                                <div class="percent per3"></div>
+                                <div class="fill fill3"></div>
+                            </div>
+                            <span class="bartitle">loses1</span>
+                        </div>
+                        <div class="column">
+                            <div class="bar">
+                                <div class="percent per4"></div>
+                                <div class="fill fill4"></div>
+                            </div>
+                            <span class="bartitle">loses2</span>
+                        </div>
+                        <div class="column">
+                            <div class="bar">
+                                <div class="percent per5"></div>
+                                <div class="fill fill5"></div>
+                            </div>
+                            <span class="bartitle">loses3</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<script>
+    const bar1 = document.querySelector('.fill1'),
+    val1  = 50;
+    const bar2 = document.querySelector('.fill2'),
+    val2 = 80;
+    const bar3 = document.querySelector('.fill3'),
+    val3 = 30;
+    const bar4 = document.querySelector('.fill4'),
+    val4 = 100;
+    const bar5 = document.querySelector('.fill5'),
+    val5 = 150;
+    window.onload=()=>{
+            bar1.style.height=`calc(${val1}*15vh/100)`;
+            document.querySelector('.per1').innerHTML = val1;
+            bar2.style.height=`calc(${val2}*15vh/100)`;
+            document.querySelector('.per2').innerHTML = val2;
+            bar3.style.height=`calc(${val3}*15vh/100)`;
+            document.querySelector('.per3').innerHTML = val3;
+            bar4.style.height=`calc(${val4}*15vh/100)`;
+            document.querySelector('.per4').innerHTML = val4;
+            bar5.style.height=`calc(${val5}*15vh/100)`;
+            document.querySelector('.per5').innerHTML = val5;
+        }
+</script>
+    <script src=" {% static "js/script.js" %}"></script>
+    <script src=" {% static "js/popup.js" %}"></script>
+</body>
+</html>

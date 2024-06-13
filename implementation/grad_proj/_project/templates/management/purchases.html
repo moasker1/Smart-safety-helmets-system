@@ -82,10 +82,10 @@
                         {% endfor %}
                     </select> 
                     {% endcomment %}
-                    <input name="site" type="text" placeholder="site">
-                    <input name="purchase_type" type="text" placeholder="purchase_type">
-                    <input name="amount" type="number" placeholder="amount">
-                    <input name="date" type="date" placeholder="date" style="text-align:center;">
+                    <input name="site" type="text" placeholder="site" required>
+                    <input name="purchase_type" type="text" placeholder="purchase_type" required>
+                    <input name="amount" type="number" placeholder="amount" required>
+                    <input name="date" type="date" placeholder="date" style="text-align:center;" required>
                 </div>
                 <button name="addPurchase" class="addsupervisor">ADD</button>
             </form>
@@ -99,6 +99,7 @@
                             <th>purchase_type</th>
                             <th>amount</th>
                             <th>date</th>
+                            <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -109,6 +110,32 @@
                             <td>{{purchase.purchase_type}}</td>
                             <td>{{purchase.amount}}</td>
                             <td>{{purchase.date}}</td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>Update section </h2>
+                                    <br>
+                                    <form method="POST" action="{% url "update_purchase" purchase.id %}" class="updatediv">
+                                        {% csrf_token %}
+                                        <div class="updateinputs">
+                                            <p>site:</p>
+                                            <input value="{{purchase.site}}" name="site" type="text" placeholder="site" required>
+                                        </div>
+                                        <div class="updateinputs">
+                                            <p>purchase type:</p>
+                                            <input value="{{purchase.purchase_type}}" name="purchase_type" type="text" placeholder="purchase type" required>
+                                        </div>
+                                        <div class="updateinputs">
+                                            <p>amount:</p>
+                                            <input value="{{purchase.amount}}" name="amount" type="number" placeholder="amount" required>                        
+                                        </div>
+                                        <div class="updateinputs">
+                                            <p>date:</p>
+                                            <input value="{{purchase.date|date:"20y-m-d"}}" name="date" type="date" placeholder="date" required>                        
+                                        </div>
+                                        <button type="submit" name="updatePurchase" class="updatebtn">Update</button>
+                                    </form>
+                                    </div>
+                                '><i class="fa-regular fa-pen-to-square"></i></i></a></td>
                             <td><a style="text-decoration:none;" id="clickBTN" metadata = '
                                 <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
                                     <h2>Are you sure you want to delete this row</h2>

@@ -98,6 +98,9 @@ def employees(request):
         return redirect("employees")
     context = {"employees" : employees}
     return render(request, "management/employees.html", context)
+
+def analytics(request):
+    return render(request, "management/analytics.html")
 # ==============================================================================
 def update_employee(request, id):
     if "updateEmployee" in request.POST:
@@ -115,6 +118,53 @@ def update_employee(request, id):
 
         messages.success(request, "Employee Updated successfully")
         return redirect("employees")
+# ==============================================================================
+def update_expense(request, id):
+    if "updateExpense" in request.POST:
+        expense_type = request.POST.get("expense_type")
+        amount = request.POST.get("amount")
+        date = request.POST.get("date")
+
+        employee = Expense.objects.get(id=id)
+        employee.expense_type=expense_type
+        employee.amount=amount
+        employee.date = date
+        employee.save()
+
+        messages.success(request, "Expense Updated successfully")
+        return redirect("expenses")
+# ==============================================================================
+def update_income(request, id):
+    if "updateIncome" in request.POST:
+        site = request.POST.get("site")
+        amount = request.POST.get("amount")
+        date = request.POST.get("date")
+
+        employee = Income.objects.get(id=id)
+        employee.site=site
+        employee.amount=amount
+        employee.date = date
+        employee.save()
+
+        messages.success(request, "Income Updated successfully")
+        return redirect("incomes")
+# ==============================================================================
+def update_purchase(request, id):
+    if "updatePurchase" in request.POST:
+        purchase_type = request.POST.get("purchase_type")
+        site = request.POST.get("site")
+        amount = request.POST.get("amount")
+        date = request.POST.get("date")
+
+        employee = Purchase.objects.get(id=id)
+        employee.purchase_type=purchase_type
+        employee.site=site
+        employee.amount=amount
+        employee.date = date
+        employee.save()
+
+        messages.success(request, "purchase Updated successfully")
+        return redirect("purchases")
 # ==============================================================================
 def delete_income(request, id):
     income_to_delete = get_object_or_404(Income, id =id )

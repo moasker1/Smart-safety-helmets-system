@@ -84,9 +84,9 @@
                         {% endfor %}
                     </select> 
                     {% endcomment %}
-                    <input name="site" type="text" placeholder="site">
-                    <input name="amount" type="number" placeholder="amount">
-                    <input name="date" type="date" placeholder="date" style="text-align:center;">
+                    <input name="site" type="text" placeholder="site" required>
+                    <input name="amount" type="number" placeholder="amount" required>
+                    <input name="date" type="date" placeholder="date" style="text-align:center;" required>
                 </div>
                 <button type="submit" name="addIncome" class="addsupervisor">ADD</button>
             </form>
@@ -99,6 +99,7 @@
                             <th>site</th>
                             <th>Amount</th>
                             <th>Date</th>
+                            <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -108,6 +109,28 @@
                             <td>{{income.site}}</td>
                             <td>{{income.amount}}</td>
                             <td>{{income.date}}</td>
+                            <td><a style="text-decoration:none;" id="clickBTN" metadata = '
+                                <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                                    <h2>Update section </h2>
+                                    <br>
+                                    <form method="POST" action="{% url "update_income" income.id %}" class="updatediv">
+                                        {% csrf_token %}
+                                        <div class="updateinputs">
+                                            <p>site:</p>
+                                            <input value="{{income.site}}" name="site" type="text" placeholder="site" required>
+                                        </div>
+                                        <div class="updateinputs">
+                                            <p>amount:</p>
+                                            <input value="{{income.amount}}" name="amount" type="number" placeholder="amount" required>                        
+                                        </div>
+                                        <div class="updateinputs">
+                                            <p>date:</p>
+                                            <input value="{{income.date|date:"20y-m-d"}}" name="date" type="date" placeholder="date" required>                        
+                                        </div>
+                                        <button type="submit" name="updateIncome" class="updatebtn">Update</button>
+                                    </form>
+                                    </div>
+                                '><i class="fa-regular fa-pen-to-square"></i></i></a></td>
                             <td><a style="text-decoration:none;" id="clickBTN" metadata = '
                                 <div  style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
                                     <h2>Are you sure you want to delete this row</h2>

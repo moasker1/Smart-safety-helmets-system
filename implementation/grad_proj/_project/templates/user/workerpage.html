@@ -4,36 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta http-equiv="refresh" content="1">  {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static "css/main.css" %}">
-    
     <title>Worker Page</title>
 </head>
-<body>
+<body >
     <div class="window" id="popup">
         <div class="window_content">
             <i id="closePopup" class="fa-solid fa-xmark close"></i>
             <h1>Just a sec.....</h1>
         </div>    
     </div>
-    <div class="menuBar">
-        <div class="head">
-            <i class="fa-solid fa-bars menuControls" id="menuControls"></i>
-            <img src="{% static "images/smart safety helmet3.png" %}" alt="logo">
-            <h2>Smart Helmet</h2>
-        </div>
-        <div class="bottomSide">
-            <div>
-                <span>Log out</span>
-                <a href="{% url "login" %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-            </div>
-        </div>
-    </div>
 
-    <div class="mainContainer">
         <div class="container2" id="container2">
             <div class="up">
-            
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
@@ -42,11 +27,11 @@
                 </ul>
                 {% endif %}
 
-                <h2>WORKER PAGE FOR "{{worker.name}}"</h2>
-                <div class="inputs">
-                    <input name="name" type="text" placeholder="{{worker.name}}">
-                    <input name="phone" type="text" placeholder="{{worker.helmetID}}">
-                    <input name="email" type="text" placeholder="{{worker.site}}">
+                <h2 class="main-title" >WORKER PAGE <span style="color:#0288a3;">    {{worker.name}}    </span></h2>
+                <div class="inputs" style="box-shadow:0px 0px 0px #0288a3;">
+                    <input style="color:#0288a3;text-align:center;font-weight:900;font-size:25px;width:auto;border:solid #0288a3;border-radius:10px" name="name" type="text" value="{{worker.name}}" readonly>
+                    <input style="color:#0288a3;text-align:center;font-weight:900;font-size:25px;width:auto;border:solid #0288a3;border-radius:10px" name="phone" type="text" value="{{worker.helmetID}}"readonly>
+                    <input style="color:#0288a3;text-align:center;font-weight:900;font-size:25px;width:auto;border:solid #0288a3;border-radius:10px" name="email" type="text" value="{{worker.site}}" readonly>
                 </div>
                 <form method="post">
                     {% csrf_token %}
@@ -60,21 +45,63 @@
                         border-radius: 30px;
                         cursor: pointer;
                         margin: 20px 0;
-                        padding: 5px;
+                        padding: 10px;
                     " name="unassign2">UnAssign</button>
                 </form>
             </div>
 
             {% if helmet %}
             <div class="down" id="helmet-data">
-                {% for helmet_doc in helmet %}
-                    <h3>Helmet Data</h3>
+                
+            </div>
+            {% else %}
+                <h1>No helmet assigned</h1>
+            {% endif %}
+        </div>
+    
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+            import { getFirestore,collection,addDoc, onSnapshot,doc,deleteDoc,updateDoc,getDoc } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyD8hciQSvz9rFMHSDwcvA3qZXLz8wHPiVI",
+              authDomain: "smart-hemlet.firebaseapp.com",
+              databaseURL: "https://smart-hemlet-default-rtdb.firebaseio.com",
+              projectId: "smart-hemlet",
+              storageBucket: "smart-hemlet.appspot.com",
+              messagingSenderId: "506905334714",
+              appId: "1:506905334714:web:8f961a0ed8e7d9a3fc4383",
+              measurementId: "G-FWQ3D1709T"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore();
+            const colref = collection(db,'helmets');
+            function refresh_table(){
+                const helmet_data = document.getElementById('helmet-data');
+                
+                onSnapshot(colref,(snapshot)=>{
+                    let prods =[]
+                    let prodtable = ''
+                    snapshot.docs.forEach(doc=>{
+                        prods.push({id:doc.id,...doc.data()})
+                        const helmetID = '{{ doc2_id }}';
+                        if(doc.id == helmetID){
+                            prodtable +=`
+            <h2 style="border:2px solid black; padding:1%;border-radius:20px;width:20%;text-align:center;">Helmet Data</h2>
                     <table>
                         <thead>
                             <tr>
                                 <th>Helmet id</th>
                                 <th>Temperature</th>
-                                <th>Humidity</th>
+                                <th>Humidity</th>¬
                                 <th>CO</th>
                                 <th>Fall</th>
                                 <th>Objects</th>
@@ -82,44 +109,52 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr style="font-weight:bold;">
+                                <td>${doc.data().helmetID}</td>
+                                    <td>${doc.data().temp}</td>
+                                    <td>${doc.data().humidity}</td>
+                                    <td>${doc.data().co}</td>
+                                    <td>${doc.data().fall}</td>
+                                    <td>${doc.data().objects}</td>
+                                    <td>${doc.data().lpg}</td>
                             <tr>
-                                <td>{{ helmet_doc.to_dict.helmetID }}</td>
-                                <td>{{ helmet_doc.to_dict.temp }}</td>
-                                <td>{{ helmet_doc.to_dict.humidity }}</td>
-                                <td>{{ helmet_doc.to_dict.co }}</td>
-                                <td>{{ helmet_doc.to_dict.fall }}</td>
-                                <td>{{ helmet_doc.to_dict.objects }}</td>
-                                <td>{{ helmet_doc.to_dict.lpg }}</td>
-                            </tr>
                         </tbody>
                     </table>
-                {% endfor %}
-            </div>
-            {% else %}
-                <h1>No helmet assigned</h1>
-            {% endif %}
-        </div>
-    </div>
-
+            `;
+                }
+            helmet_data.innerHTML = prodtable
+    })})
+            }
+            setInterval(refresh_table,500);
+        </script>
     <script src="{% static "js/manager.js" %}"></script>
-    <script>
+
+    <!-- <script>
         var workerId = "{{ worker_id }}";  
         var ws = new WebSocket("ws://" + window.location.host + "/ws/worker_page/" + workerId);
 
+        ws.onopen = function(event) {
+            console.log('WebSocket connection opened', event);
+        };
+
         ws.onmessage = function(event) {
+            console.log('WebSocket message received:', event);
             var data = JSON.parse(event.data);
             updateHelmetData(data);
         };
 
+        ws.onerror = function(event) {
+            console.error('WebSocket error observed:', event);
+        };
+
         ws.onclose = function(event) {
-            console.log('WebSocket closed');
+            console.log('WebSocket connection closed', event);
         };
 
         function updateHelmetData(data) {
-            var helmetData = data.helmet_data;
+            var helmetData = data.worker_data;
             var html = "";
-            helmetData.forEach(function(helmet) {
-                html += `
+            html += `
                 <h3>Helmet Data</h3>
                 <table>
                     <thead>
@@ -135,20 +170,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>${helmet.helmetID}</td>
-                            <td>${helmet.temp}</td>
-                            <td>${helmet.humidity}</td>
-                            <td>${helmet.co}</td>
-                            <td>${helmet.fall}</td>
-                            <td>${helmet.objects}</td>
-                            <td>${helmet.lpg}</td>
+                            <td>${helmetData.helmetID}</td>
+                            <td>${helmetData.temp}</td>
+                            <td>${helmetData.humidity}</td>
+                            <td>${helmetData.co}</td>
+                            <td>${helmetData.fall}</td>
+                            <td>${helmetData.objects}</td>
+                            <td>${helmetData.lpg}</td>
                         </tr>
                     </tbody>
                 </table>
-                `;
-            });
+            `;
             document.getElementById('helmet-data').innerHTML = html;
         }
-    </script>
+    </script> -->
 </body>
 </html>

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from user.consumers import WorkerPageConsumer  
+from user.consumers import WorkerConsumer  
 
 
 urlpatterns = [
@@ -21,6 +21,3 @@ urlpatterns = [
     path('worker_delete/<str:id>', views.worker_delete, name='worker_delete'),
     path('helmet_delete/<str:id>', views.helmet_delete, name='helmet_delete'),
 ]
-# websocket_urlpatterns = [
-#     path('worker_page/<str:id>', WorkerPageConsumer.as_asgi()),
-# ]
