@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <!----===== Iconscout CSS ===== -->
+    <!--======== CSS ======== -->
+    <link rel="stylesheet" href=" {% static "css/style.css" %} ">
+    <!--===== Iconscout CSS =====-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>content page</title> 
 </head>
@@ -18,11 +18,10 @@
         <div class="window_content" id="window_content">
         </div>    
     </div>
-
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="{% static "images/smart safety helmet3.png" %}" alt="">
+                <img src=" {% static "images/smart safety helmet3.png" %}" alt="">
             </div>
 
             <span class="logo_name">Smart helmet</span>
@@ -30,23 +29,23 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="{% url "manager" %}" >
+                <li><a href="{% url "manager" %}">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dahsboard</span>
                 </a></li>
-                <li><a style="cursor: pointer;" id="detailbtn">
+                <li><a style="cursor: pointer;" id="detailbtn" >
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Content</span>
                 </a>
                 <div id="detaildiv">
                     <a href="{% url "sites" %}"><span class="link-name">Sites</span></a>
-                    <a href="{% url "supervisors" %}"><span class="link-name">Supervisors</span></a>
+                    <a href="{% url "supervisors" %}" class="selected"><span class="link-name">Supervisors</span></a>
                     <a href="{% url "workers" %}"><span class="link-name">Workers</span></a>
                     <a href="{% url "helmets" %}"><span class="link-name">Helmets</span></a>
                 </div>
             </li>
                 <li><a href="{% url "analytics" %}" class="selected">
-                    <i class="uil uil-chart" ></i>
+                    <i class="uil uil-chart"></i>
                     <span class="link-name">Analytics</span>
                 </a></li>
                 <li><a href="#">
@@ -99,7 +98,7 @@
                     <i class="uil uil-chart"></i>
                     <span class="text">Graphs</span>
                 </div>
-                <div class="activite-data">
+                <div class="activity-data">
                     <div class="bars-data">
                         <span class="text">Loses details</span>
                     <div class="bars-con">
@@ -140,12 +139,19 @@
                         </div>
                     </div>
                     </div>
+                    
+                    <div class="bars-data">
+                        <span class="text">incomes details</span>
+                        <canvas style="width: 100%;height: 90%;" id="myChart"></canvas>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
 
     </section>
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
     const bar1 = document.querySelector('.fill1'),
     val1  = 50;
     const bar2 = document.querySelector('.fill2'),
@@ -168,8 +174,27 @@
             bar5.style.height=`calc(${val5}*15vh/100)`;
             document.querySelector('.per5').innerHTML = val5;
         }
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: 'Incomes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
 </script>
-    <script src=" {% static "js/script.js" %}"></script>
-    <script src=" {% static "js/popup.js" %}"></script>
+<script src="{% static "script.js" %} "></script>
+<script src=" {% static "js/popup.js" %}"></script>
 </body>
 </html>

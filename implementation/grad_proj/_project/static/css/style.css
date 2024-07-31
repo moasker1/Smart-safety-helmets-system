@@ -713,7 +713,7 @@ nav.close ~ .dashboard .top{
     }
 }
 .bars-data{
-    width: 45%;
+    width: 48%;
     height: 50vh;
     border: 1px solid var(--black-light-color);
     border-radius: 10px;
@@ -721,6 +721,9 @@ nav.close ~ .dashboard .top{
     justify-content: start;
     align-items: center;
     flex-direction: column;
+}
+nav.close ~ .bars-data{
+    height: 70vh;
 }
 .bars-data .bars-con{
     width: 100%;
