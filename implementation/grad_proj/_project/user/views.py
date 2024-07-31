@@ -15,21 +15,21 @@ import firebase_admin
 from firebase_admin import credentials, firestore, auth
 from management import models as ManagementModels
 
-cred = credentials.Certificate("D:\graduation project (smart helmet)\implementation\grad_proj\_project\smart-hemlet-firebase-adminsdk-a6yrp-13de9ef48d.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-config={
-    "apiKey": "AIzaSyD8hciQSvz9rFMHSDwcvA3qZXLz8wHPiVI",
-    "authDomain": "smart-hemlet.firebaseapp.com",
-    "databaseURL":"https://smart-hemlet-default-rtdb.firebaseio.com/",
-    "projectId": "smart-hemlet",
-    "storageBucket": "smart-hemlet.appspot.com",
-    "messagingSenderId": "506905334714",
-    "appId": "1:506905334714:web:8f961a0ed8e7d9a3fc4383",
-}
-firebase = pyrebase.initialize_app(config)
-authe = firebase.auth()
-database = firebase.database()
+# cred = credentials.Certificate("D:\graduation project (smart helmet)\implementation\grad_proj\_project\smart-hemlet-firebase-adminsdk-a6yrp-13de9ef48d.json")
+# firebase_admin.initialize_app(cred)
+# db = firestore.client()
+# config={
+#     "apiKey": "AIzaSyD8hciQSvz9rFMHSDwcvA3qZXLz8wHPiVI",
+#     "authDomain": "smart-hemlet.firebaseapp.com",
+#     "databaseURL":"https://smart-hemlet-default-rtdb.firebaseio.com/",
+#     "projectId": "smart-hemlet",
+#     "storageBucket": "smart-hemlet.appspot.com",
+#     "messagingSenderId": "506905334714",
+#     "appId": "1:506905334714:web:8f961a0ed8e7d9a3fc4383",
+# }
+# firebase = pyrebase.initialize_app(config)
+# authe = firebase.auth()
+# database = firebase.database()
 #============================================================================================================
 def login(request):
     if "managerLogin" in request.POST:

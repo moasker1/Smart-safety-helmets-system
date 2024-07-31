@@ -134,7 +134,7 @@
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
 
         // Your web app's Firebase configuration
-        const firebaseConfig = {
+        {% comment %} const firebaseConfig = {
             apiKey: "AIzaSyD8hciQSvz9rFMHSDwcvA3qZXLz8wHPiVI",
             authDomain: "smart-hemlet.firebaseapp.com",
             databaseURL: "https://smart-hemlet-default-rtdb.firebaseio.com",
@@ -143,7 +143,7 @@
             messagingSenderId: "506905334714",
             appId: "1:506905334714:web:8f961a0ed8e7d9a3fc4383",
             measurementId: "G-FWQ3D1709T"
-        };
+        }; {% endcomment %}
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
